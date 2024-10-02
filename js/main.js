@@ -190,6 +190,8 @@ function generateInputs() {
     });
 }
 guessButton.addEventListener("click", handleGuesses);
+var resultWin = 0;
+var resultLose = 0;
 function handleGuesses() {
     var _a;
     var successGuess = true;
@@ -210,6 +212,7 @@ function handleGuesses() {
         }
     }
     if (successGuess) {
+        resultWin++;
         messageArea.textContent = "You Win in ".concat(currentTry, " Tries");
         var alltries = document.querySelectorAll(".inputs > div");
         alltries.forEach(function (tryw) {
@@ -231,6 +234,7 @@ function handleGuesses() {
             tryClass.children[1].focus();
         }
         else {
+            resultLose++;
             messageArea.textContent = "You Have Lost The Word Is ".concat(wordToGuess);
             var alltries = document.querySelectorAll(".inputs > div");
             alltries.forEach(function (tryw) {
@@ -263,6 +267,7 @@ function getHint() {
         }
     }
 }
+var result = document.querySelector(".results");
 reset.onclick = function () {
     messageArea.textContent = "";
     inputs.innerHTML = "";
@@ -273,6 +278,7 @@ reset.onclick = function () {
     generateInputs();
     guessButton.disabled = false;
     hint.disabled = false;
+    result.textContent = "You Win ".concat(resultWin, " Times And Lost ").concat(resultLose, " Times");
 };
 window.onload = function () {
     test();
