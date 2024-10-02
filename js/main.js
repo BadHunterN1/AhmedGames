@@ -116,6 +116,7 @@ function test() {
     var newWord;
     var newWordIndex;
     if (words.length === 0) {
+        reset.disabled = true;
         return;
     }
     do {
@@ -125,11 +126,8 @@ function test() {
     headerHint.textContent = "".concat(newWord.hint);
     wordToGuess = newWord.name.toUpperCase();
     wordNumber = wordToGuess.length;
-    console.log(wordNumber);
     testarray.push(newWord.name);
     words.splice(newWordIndex, 1);
-    console.log(testarray);
-    console.log(words);
 }
 var messageArea = document.querySelector(".message");
 function generateInputs() {
