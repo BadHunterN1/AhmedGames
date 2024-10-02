@@ -131,6 +131,7 @@ function test() {
     words.splice(newWordIndex, 1);
 }
 var messageArea = document.querySelector(".message");
+var guessButton = document.querySelector(".check");
 function generateInputs() {
     for (var i = 1; i <= tryNumbers; i++) {
         var div = document.createElement("div");
@@ -173,6 +174,9 @@ function generateInputs() {
                 if (prevInput)
                     prevInput.focus();
             }
+            if (event.key === "Enter") {
+                guessButton.click();
+            }
             if (event.key === "Backspace") {
                 if (this.value === "" && prevInput) {
                     prevInput.focus();
@@ -185,7 +189,6 @@ function generateInputs() {
         });
     });
 }
-var guessButton = document.querySelector(".check");
 guessButton.addEventListener("click", handleGuesses);
 function handleGuesses() {
     var _a;
