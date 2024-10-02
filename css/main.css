@@ -141,6 +141,9 @@ body {
   opacity: 0.4;
   cursor: no-drop;
 }
+.guess-game .key-colors {
+  width: 385px;
+}
 .guess-game .key-colors .key-color {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -172,7 +175,7 @@ body {
   font-weight: bold;
 }
 
-.message {
+.message, .results {
   text-align: center;
   font-weight: bold;
   font-size: 30px;
