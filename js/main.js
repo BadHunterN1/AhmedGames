@@ -101,7 +101,7 @@ var words = [
         hint: "The Best Anime In The World.",
     },
     {
-        name: "Deja Vu",
+        name: "DejaVu",
         hint: "The uncanny feeling that you've experienced this moment before.",
     },
 ];
