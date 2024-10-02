@@ -124,6 +124,7 @@ function test() {
         newWord = words[newWordIndex];
     } while (testarray.includes(newWord.name));
     headerHint.textContent = "".concat(newWord.hint);
+    document.title = "Guess: ".concat(newWord.hint);
     wordToGuess = newWord.name.toUpperCase();
     wordNumber = wordToGuess.length;
     testarray.push(newWord.name);
