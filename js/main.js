@@ -1,6 +1,5 @@
 var header = document.querySelector(".container h1");
 header.textContent = "Guess The Word";
-document.querySelector("footer").textContent = "Guess The Word Created By BadHunterN1";
 var inputs = document.querySelector(".inputs");
 var wordToGuess = "";
 var words = [
