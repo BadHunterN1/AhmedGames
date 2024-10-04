@@ -70,99 +70,106 @@ input.onpaste = function () {
 	return false;
 };
 startButton.onclick = function () {
-	diffculity.forEach(function (one) {
-		one.disabled = true;
-	});
-	this.remove();
-	input.focus();
-	genWords();
+    diffculity.forEach(function (one) {
+        one.disabled = true;
+    });
+    this.remove();
+    input.value = "";
+    input.focus();
+    genWords();
 };
 function genWords() {
-	var randomWord = words[Math.floor(Math.random() * words.length)];
-	var wordIndex = words.indexOf(randomWord);
-	words.splice(wordIndex, 1);
-	function initializeWordOutput() {
-		var initialDisplay = "";
-		for (var i = 0; i < randomWord.length; i++) {
-			initialDisplay += '<span class="untyped">'.concat(
-				randomWord[i],
-				"</span>"
-			);
-		}
-		theWord.innerHTML = initialDisplay;
-	}
-	function updateWordColor(typedText) {
-		var spans = theWord.querySelectorAll("span");
-		for (var i = 0; i < randomWord.length; i++) {
-			if (i < typedText.length) {
-				if (typedText[i].toUpperCase() === randomWord[i].toUpperCase()) {
-					spans[i].classList.remove("untyped", "incorrect");
-					spans[i].classList.add("correct");
-				} else {
-					spans[i].classList.remove("untyped", "correct");
-					spans[i].classList.add("incorrect");
-				}
-			} else {
-				spans[i].classList.remove("correct", "incorrect");
-				spans[i].classList.add("untyped");
-			}
-		}
-	}
-	input.addEventListener("input", function () {
-		var typedText = input.value;
-		updateWordColor(typedText);
-	});
-	initializeWordOutput();
-	startPlay();
+    var randomWord = sentences[Math.floor(Math.random() * sentences.length)];
+    var wordIndex = sentences.indexOf(randomWord);
+    sentences.splice(wordIndex, 1);
+    function initializeWordOutput() {
+        var initialDisplay = "";
+        for (var i = 0; i < randomWord.length; i++) {
+            initialDisplay += "<span class=\"untyped\">".concat(randomWord[i], "</span>");
+        }
+        theWord.innerHTML = initialDisplay;
+    }
+    function updateWordColor(typedText) {
+        var spans = theWord.querySelectorAll("span");
+        for (var i = 0; i < randomWord.length; i++) {
+            if (i < typedText.length) {
+                if (typedText[i].toUpperCase() === randomWord[i].toUpperCase()) {
+                    spans[i].classList.remove("untyped", "incorrect");
+                    spans[i].classList.add("correct");
+                }
+                else {
+                    spans[i].classList.remove("untyped", "correct");
+                    spans[i].classList.add("incorrect");
+                }
+            }
+            else {
+                spans[i].classList.remove("correct", "incorrect");
+                spans[i].classList.add("untyped");
+            }
+        }
+    }
+    input.addEventListener("input", function () {
+        var typedText = input.value;
+        updateWordColor(typedText);
+    });
+    initializeWordOutput();
+    startPlay();
 }
 input.addEventListener("input", function () {
-	this.style.height = "auto"; // Reset height to auto to calculate new height
-	this.style.height = this.scrollHeight + "px"; // Set height based on scroll height
+    this.style.height = "auto";
+    this.style.height = this.scrollHeight + "px";
 });
 function startPlay() {
-	timeLeftSpan.innerHTML = defaultLevelSeconds.toString();
-	var start = setInterval(function () {
-		timeLeftSpan.innerHTML = (parseInt(timeLeftSpan.innerHTML) - 1).toString();
-		if (timeLeftSpan.innerHTML === "0") {
-			clearInterval(start);
-			var currentWordText = Array.from(theWord.querySelectorAll("span"))
-				.map(function (span) {
-					return span.textContent;
-				})
-				.join("");
-			if (currentWordText.toLowerCase() === input.value.toLowerCase()) {
-				input.value = "";
-				scoreGot.innerHTML = (parseInt(scoreGot.innerHTML) + 1).toString();
-				if (words.length > 0) {
-					genWords();
-				} else {
-					var span = document.createElement("span");
-					span.className = "good";
-					span.textContent = "Congratz";
-					finishMessage.appendChild(span);
-				}
-			} else {
-				var span_1 = document.createElement("span");
-				span_1.className = "bad";
-				span_1.textContent = "Loser! The Game Will Start Again After 5 Seconds";
-				finishMessage.appendChild(span_1);
-				diffculity.forEach(function (one) {
-					one.disabled = false;
-				});
-				input.disabled = true;
-				setTimeout(function () {
-					diffculity.forEach(function (one) {
-						one.disabled = true;
-					});
-					input.disabled = false;
-					input.focus();
-					input.value = "";
-					startPlay();
-					span_1.textContent = "";
-				}, 5000);
-			}
-		}
-	}, 1000);
+    timeLeftSpan.innerHTML = defaultLevelSeconds.toString();
+    var checkWordMatch = function () {
+        var currentWordText = Array.from(theWord.querySelectorAll("span"))
+            .map(function (span) { return span.textContent; })
+            .join("");
+        if (currentWordText.toLowerCase() === input.value.toLowerCase()) {
+            input.value = "";
+            scoreGot.innerHTML = (parseInt(scoreGot.innerHTML) + 1).toString();
+            if (sentences.length > 0) {
+                genWords();
+            }
+            else {
+                var span = document.createElement("span");
+                span.className = "good";
+                span.textContent = "Congratz";
+                finishMessage.appendChild(span);
+            }
+        }
+        else {
+            var span_1 = document.createElement("span");
+            span_1.className = "bad";
+            span_1.textContent = "Loser! The Game Will Start Again After 5 Seconds";
+            finishMessage.appendChild(span_1);
+            diffculity.forEach(function (one) {
+                one.disabled = false;
+            });
+            setTimeout(function () {
+                diffculity.forEach(function (one) {
+                    one.disabled = true;
+                });
+                input.value = "";
+                startPlay();
+                span_1.textContent = "";
+            }, 5000);
+        }
+    };
+    var start = setInterval(function () {
+        timeLeftSpan.innerHTML = (parseInt(timeLeftSpan.innerHTML) - 1).toString();
+        if (timeLeftSpan.innerHTML === "0") {
+            clearInterval(start);
+            checkWordMatch();
+        }
+    }, 1000);
+    input.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            clearInterval(start);
+            checkWordMatch();
+        }
+    }, { once: true });
 }
 // const container = <HTMLDivElement>document.querySelector(".container");
 // getRepos();
