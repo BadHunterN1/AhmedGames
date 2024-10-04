@@ -146,7 +146,10 @@ function startPlay() {
             diffculity.forEach(function (one) {
                 one.disabled = false;
             });
+	    input.disabled = true;
             setTimeout(function () {
+		input.disabled = false;
+		input.focus();
                 diffculity.forEach(function (one) {
                     one.disabled = true;
                 });
