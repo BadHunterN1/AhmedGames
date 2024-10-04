@@ -166,13 +166,18 @@ function startPlay() {
             checkWordMatch();
         }
     }, 1000);
-    input.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            clearInterval(start);
-            checkWordMatch();
-        }
-    }, { once: true });
+    const inputField = document.querySelector("textarea");
+	
+	inputField.addEventListener("keydown", function (e) {
+		if (e.key === "Enter") {
+			e.preventDefault();
+		}
+		if (e.key === "Enter") {
+			e.preventDefault();
+			clearInterval(start);
+			checkWordMatch();
+		}
+	});
 }
 // const container = <HTMLDivElement>document.querySelector(".container");
 // getRepos();
