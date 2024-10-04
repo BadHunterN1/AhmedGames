@@ -193,5 +193,20 @@ footer {
   width: 100%;
   background-color: #333;
   color: white;
+  display: grid;
+  gap: 20px;
 }
-/*# sourceMappingURL=main.css.map */
+
+footer a{
+  text-decoration: none;
+  background-color: #1a9687;
+  padding: 8px;
+  border-radius: 9px;
+  color: white;
+  font-weight: bold;
+}
+@media (max-height: 568px) {
+  footer{
+    position: relative;
+  }
+}
