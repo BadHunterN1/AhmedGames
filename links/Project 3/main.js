@@ -20,6 +20,16 @@ var words = [
 	"I hate blizzerd games and you hate blizzerd games and every one hates blizzerd games and activsion.",
 	"I dont know why iam doing this games like no one cares and i don't get money out of it sad stuff.",
 	"Someone said: if you work hard you can be anything you want to be. I want to say things to him.",
+	"The sun rose beautifully over the horizon, casting warm golden light on the trees and waking up the sleeping town.",
+	"Walking through the park, I noticed children playing, couples chatting, and the gentle breeze making the leaves rustle softly.",
+	"She opened the book and got lost in a world of adventure, where anything was possible and imagination knew no bounds.",
+	"As the rain fell gently outside, I curled up with a blanket and a cup of tea, enjoying the peaceful moment.",
+	"The aroma of freshly baked bread filled the kitchen, inviting everyone to gather around the table for a warm meal.",
+	"He stared at the stars in the night sky, contemplating life’s mysteries while feeling a deep connection to the universe.",
+	"With every stroke of the paintbrush, she expressed her emotions on the canvas, creating a masterpiece that spoke to the soul.",
+	"The sound of laughter echoed through the air as friends gathered for a picnic, sharing stories and enjoying each other’s company.",
+	"After a long day at work, she looked forward to unwinding with her favorite book and a cozy blanket on the couch.",
+	"The excitement in the air was palpable as the crowd awaited the concert to begin, eagerly anticipating their favorite band’s performance.",
 ];
 var lvls = {
 	Easy: 60,
