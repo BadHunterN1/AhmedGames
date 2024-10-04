@@ -139,10 +139,8 @@ function startPlay() {
             }
         }
         else {
-            var span_1 = document.createElement("span");
-            span_1.className = "bad";
+	    var span_1 = document.querySelector(".bad");
             span_1.textContent = "Loser! The Game Will Start Again After 5 Seconds";
-            finishMessage.appendChild(span_1);
             diffculity.forEach(function (one) {
                 one.disabled = false;
             });
