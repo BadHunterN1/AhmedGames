@@ -1,5 +1,5 @@
 // Array Of Words
-var words = [
+var sentences = [
 	"The quick brown fox jumped over the lazy dog while chasing a squirrel across the wide open field.",
 	"In the quiet of the night, the stars twinkled brightly, illuminating the vast sky with their gentle glow.",
 	"The scientist carefully measured the chemical reaction, noting every small detail for future research and analysis in the lab.",
