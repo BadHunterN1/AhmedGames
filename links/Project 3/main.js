@@ -16,7 +16,7 @@ var words = [
 	"The detective inspected the crime scene, carefully examining the clues and piecing together the mystery of the missing jewels.",
 	"On the first day of spring, the garden bloomed with vibrant flowers, and the air was filled with sweet fragrance.",
 	"Say before me i won't play LOL ever agian and if i play it iam g or not a m.",
-	"No one cares about this game you will play it once and forogt about it and its existence just like the previous ones.",
+	"No one cares about this game you will play it once and forgot about it and it's existence just like the previous ones.",
 	"I hate blizzerd games and you hate blizzerd games and every one hates blizzerd games and activsion.",
 	"I dont know why iam doing this games like no one cares and i don't get money out of it sad stuff.",
 	"Someone said: if you work hard you can be anything you want to be. I want to say things to him.",
