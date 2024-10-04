@@ -25,17 +25,17 @@ var words = [
 	"She opened the book and got lost in a world of adventure, where anything was possible and imagination knew no bounds.",
 	"As the rain fell gently outside, I curled up with a blanket and a cup of tea, enjoying the peaceful moment.",
 	"The aroma of freshly baked bread filled the kitchen, inviting everyone to gather around the table for a warm meal.",
-	"He stared at the stars in the night sky, contemplating life’s mysteries while feeling a deep connection to the universe.",
+	"He stared at the stars in the night sky, contemplating life's mysteries while feeling a deep connection to the universe.",
 	"With every stroke of the paintbrush, she expressed her emotions on the canvas, creating a masterpiece that spoke to the soul.",
-	"The sound of laughter echoed through the air as friends gathered for a picnic, sharing stories and enjoying each other’s company.",
+	"The sound of laughter echoed through the air as friends gathered for a picnic, sharing stories and enjoying each other's company.",
 	"After a long day at work, she looked forward to unwinding with her favorite book and a cozy blanket on the couch.",
-	"The excitement in the air was palpable as the crowd awaited the concert to begin, eagerly anticipating their favorite band’s performance.",
+	"The excitement in the air was palpable as the crowd awaited the concert to begin, eagerly anticipating their favorite band's performance.",
 ];
 var lvls = {
 	Easy: 60,
 	Normal: 40,
 	Hard: 20,
-	Extrame: 14,
+	Extreme: 14,
 };
 var defaultLevelName = "Normal";
 var defaultLevelSeconds = lvls[defaultLevelName];
