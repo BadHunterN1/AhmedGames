@@ -1,4 +1,4 @@
-// Array Of Words
+// Array Of sentences
 var sentences = [
 	"The quick brown fox jumped over the lazy dog while chasing a squirrel across the wide open field.",
 	"In the quiet of the night, the stars twinkled brightly, illuminating the vast sky with their gentle glow.",
@@ -52,7 +52,7 @@ var diffculity = document.querySelectorAll(".diffculity");
 lvlNameSpan.innerHTML = defaultLevelName;
 secondsSpan.innerHTML = defaultLevelSeconds.toString();
 timeLeftSpan.innerHTML = defaultLevelSeconds.toString();
-scoreTotal.innerHTML = "".concat(words.length);
+scoreTotal.innerHTML = "".concat(sentences.length);
 diffculity.forEach(function (one) {
 	one.addEventListener("click", function () {
 		diffculity.forEach(function (one) {
