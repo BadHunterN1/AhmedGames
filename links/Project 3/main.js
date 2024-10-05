@@ -150,60 +150,72 @@ input.addEventListener("input", function () {
     this.style.height = "auto";
     this.style.height = this.scrollHeight + "px";
 });
+let gameInterval;
+
 function startPlay() {
+    if (gameInterval) {
+        clearInterval(gameInterval);
+    }
+
     timeLeftSpan.innerHTML = defaultLevelSeconds.toString();
-    var checkWordMatch = function () {
+    
+    function checkWordMatch() {
         var currentWordText = Array.from(theWord.querySelectorAll("span"))
-            .map(function (span) { return span.textContent; })
+            .map(function (span) {
+                return span.textContent;
+            })
             .join("");
         if (currentWordText.toLowerCase() === input.value.toLowerCase()) {
             input.value = "";
             scoreGot.innerHTML = (parseInt(scoreGot.innerHTML) + 1).toString();
             if (sentences.length > 0) {
                 genWords();
-            }
-            else {
+            } else {
                 var span = document.createElement("span");
                 span.className = "good";
                 span.textContent = "Congratz";
                 finishMessage.appendChild(span);
             }
+        } else {
+            endGame("Loser! The Game Will Start Again After 5 Seconds");
         }
-        else {
-	    var span_1 = document.querySelector(".bad");
-            span_1.textContent = "Loser! The Game Will Start Again After 5 Seconds";
+    }
+
+    function endGame(message) {
+        clearInterval(gameInterval);
+        var span = document.querySelector(".bad");
+        span.textContent = message;
+        diffculity.forEach(function (one) {
+            one.disabled = false;
+        });
+        input.disabled = true;
+        setTimeout(function () {
+            input.disabled = false;
+            input.focus();
             diffculity.forEach(function (one) {
-                one.disabled = false;
+                one.disabled = true;
             });
-	    input.disabled = true;
-            setTimeout(function () {
-		input.disabled = false;
-		input.focus();
-                diffculity.forEach(function (one) {
-                    one.disabled = true;
-                });
-                input.value = "";
-                startPlay();
-                span_1.textContent = "";
-            }, 5000);
-        }
-    };
-    var start = setInterval(function () {
+            input.value = "";
+            startPlay();
+            span.textContent = "";
+        }, 5000);
+    }
+
+    gameInterval = setInterval(function () {
         timeLeftSpan.innerHTML = (parseInt(timeLeftSpan.innerHTML) - 1).toString();
         if (timeLeftSpan.innerHTML === "0") {
-            clearInterval(start);
-            checkWordMatch();
+            endGame("Time's up! The Game Will Start Again After 5 Seconds");
         }
     }, 1000);
+
     const inputField = document.querySelector("textarea");
-	
-	inputField.addEventListener("keydown", function (e) {
-		if (e.key === "Enter") {
-			clearInterval(start);
-			checkWordMatch();
-			e.preventDefault();
-		}
-	});
+    inputField.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            clearInterval(gameInterval);
+            checkWordMatch();
+        }
+    });
 }
 // const container = <HTMLDivElement>document.querySelector(".container");
 // getRepos();
