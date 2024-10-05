@@ -150,7 +150,6 @@ body {
   border: 3px solid var(--main-color);
   font-size: 20px;
   text-align: center;
-  text-transform: capitalize;
   border-radius: 6px;
   caret-color: var(--main-color);
   resize: none;
