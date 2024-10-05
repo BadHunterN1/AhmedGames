@@ -204,7 +204,7 @@ function startPlay() {
     gameInterval = setInterval(function () {
         timeLeftSpan.innerHTML = (parseInt(timeLeftSpan.innerHTML) - 1).toString();
         if (timeLeftSpan.innerHTML === "0") {
-            endGame("Time's up! The Game Will Start Again After 5 Seconds");
+            checkWordMatch();
         }
     }, 1000);
 
