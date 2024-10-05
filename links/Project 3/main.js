@@ -212,8 +212,8 @@ function startPlay() {
     inputField.addEventListener("keydown", function (e) {
         if (e.key === "Enter") {
             e.preventDefault();
-            clearInterval(gameInterval);
             checkWordMatch();
+            clearInterval(gameInterval);
         }
     });
 }
