@@ -168,12 +168,9 @@ function startPlay() {
 	
 	inputField.addEventListener("keydown", function (e) {
 		if (e.key === "Enter") {
-			e.preventDefault();
-		}
-		if (e.key === "Enter") {
-			e.preventDefault();
 			clearInterval(start);
 			checkWordMatch();
+			e.preventDefault();
 		}
 	});
 }
