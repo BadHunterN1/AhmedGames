@@ -31,7 +31,7 @@ var sentences = [
 	"Say before me I won't play LOL ever again, and if I play it, I am g or not a m.",
 	"No one cares about this game, you will play it once and forget about it and its existence just like the previous ones.",
 	"I hate Blizzard games, and you hate Blizzard games, and everyone hates Blizzard games and Activision.",
-	"I don't know why I am doing this game, like no one cares, and I don't get money out of it. Sad stuff.",
+	"I don't know why am i making this game, like no one cares, and I don't get money out of it. Sad stuff.",
 	"Someone said: if you work hard you can be anything you want to be. I want to say things to him.",
 	"As the rain fell gently outside, I curled up with a blanket and a cup of tea, enjoying the peaceful moment.",
 ];
