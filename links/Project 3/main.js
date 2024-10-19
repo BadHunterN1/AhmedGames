@@ -31,7 +31,7 @@ var sentences = [
 	"Say before me I won't play LOL ever again, and if I play it, I am g or not a m.",
 	"No one cares about this game, you will play it once and forget about it and its existence just like the previous ones.",
 	"I hate Blizzard games, and you hate Blizzard games, and everyone hates Blizzard games and Activision.",
-	"I don't know why am i making this game, like no one cares, and I don't get money out of it. Sad stuff.",
+	"I don't know why I am doing this game, like no one cares, and I don't get money out of it. Sad stuff.",
 	"Someone said: if you work hard you can be anything you want to be. I want to say things to him.",
 	"As the rain fell gently outside, I curled up with a blanket and a cup of tea, enjoying the peaceful moment.",
 ];
@@ -101,121 +101,123 @@ input.onpaste = function () {
 	return false;
 };
 startButton.onclick = function () {
-    diffculity.forEach(function (one) {
-        one.disabled = true;
-    });
-    this.remove();
-    input.value = "";
-    input.focus();
-    genWords();
+	diffculity.forEach(function (one) {
+		one.disabled = true;
+	});
+	this.remove();
+	input.value = "";
+	input.focus();
+	genWords();
 };
 function genWords() {
-    var randomWord = sentences[Math.floor(Math.random() * sentences.length)];
-    var wordIndex = sentences.indexOf(randomWord);
-    sentences.splice(wordIndex, 1);
-    function initializeWordOutput() {
-        var initialDisplay = "";
-        for (var i = 0; i < randomWord.length; i++) {
-            initialDisplay += "<span class=\"untyped\">".concat(randomWord[i], "</span>");
-        }
-        theWord.innerHTML = initialDisplay;
-    }
-    function updateWordColor(typedText) {
-        var spans = theWord.querySelectorAll("span");
-        for (var i = 0; i < randomWord.length; i++) {
-            if (i < typedText.length) {
-                if (typedText[i].toUpperCase() === randomWord[i].toUpperCase()) {
-                    spans[i].classList.remove("untyped", "incorrect");
-                    spans[i].classList.add("correct");
-                }
-                else {
-                    spans[i].classList.remove("untyped", "correct");
-                    spans[i].classList.add("incorrect");
-                }
-            }
-            else {
-                spans[i].classList.remove("correct", "incorrect");
-                spans[i].classList.add("untyped");
-            }
-        }
-    }
-    input.addEventListener("input", function () {
-        var typedText = input.value;
-        updateWordColor(typedText);
-    });
-    initializeWordOutput();
-    startPlay();
+	var randomWord = sentences[Math.floor(Math.random() * sentences.length)];
+	var wordIndex = sentences.indexOf(randomWord);
+	sentences.splice(wordIndex, 1);
+	function initializeWordOutput() {
+		var initialDisplay = "";
+		for (var i = 0; i < randomWord.length; i++) {
+			initialDisplay += '<span class="untyped">'.concat(
+				randomWord[i],
+				"</span>"
+			);
+		}
+		theWord.innerHTML = initialDisplay;
+	}
+	function updateWordColor(typedText) {
+		var spans = theWord.querySelectorAll("span");
+		for (var i = 0; i < randomWord.length; i++) {
+			if (i < typedText.length) {
+				if (typedText[i].toUpperCase() === randomWord[i].toUpperCase()) {
+					spans[i].classList.remove("untyped", "incorrect");
+					spans[i].classList.add("correct");
+				} else {
+					spans[i].classList.remove("untyped", "correct");
+					spans[i].classList.add("incorrect");
+				}
+			} else {
+				spans[i].classList.remove("correct", "incorrect");
+				spans[i].classList.add("untyped");
+			}
+		}
+	}
+	input.addEventListener("input", function () {
+		var typedText = input.value;
+		updateWordColor(typedText);
+	});
+	initializeWordOutput();
+	startPlay();
 }
 input.addEventListener("input", function () {
-    this.style.height = "auto";
-    this.style.height = this.scrollHeight + "px";
+	this.style.height = "auto";
+	this.style.height = this.scrollHeight + "px";
 });
-let gameInterval;
+let gameInterval; // Declare this variable outside the function to keep track of the interval
 
 function startPlay() {
-    if (gameInterval) {
-        clearInterval(gameInterval);
-    }
+	// Clear any existing interval before starting a new one
+	if (gameInterval) {
+		clearInterval(gameInterval);
+	}
 
-    timeLeftSpan.innerHTML = defaultLevelSeconds.toString();
-    
-    function checkWordMatch() {
-        var currentWordText = Array.from(theWord.querySelectorAll("span"))
-            .map(function (span) {
-                return span.textContent;
-            })
-            .join("");
-        if (currentWordText.toLowerCase() === input.value.toLowerCase()) {
-            input.value = "";
-            scoreGot.innerHTML = (parseInt(scoreGot.innerHTML) + 1).toString();
-            if (sentences.length > 0) {
-                genWords();
-            } else {
-                var span = document.createElement("span");
-                span.className = "good";
-                span.textContent = "Congratz";
-                finishMessage.appendChild(span);
-            }
-        } else {
-            endGame("Loser! The Game Will Start Again After 5 Seconds");
-        }
-    }
+	timeLeftSpan.innerHTML = defaultLevelSeconds.toString();
 
-    function endGame(message) {
-        clearInterval(gameInterval);
-        var span = document.querySelector(".bad");
-        span.textContent = message;
-        diffculity.forEach(function (one) {
-            one.disabled = false;
-        });
-        input.disabled = true;
-        setTimeout(function () {
-            input.disabled = false;
-            input.focus();
-            diffculity.forEach(function (one) {
-                one.disabled = true;
-            });
-            input.value = "";
-            startPlay();
-            span.textContent = "";
-        }, 5000);
-    }
+	function checkWordMatch() {
+		var currentWordText = Array.from(theWord.querySelectorAll("span"))
+			.map(function (span) {
+				return span.textContent;
+			})
+			.join("");
+		if (currentWordText.toLowerCase() === input.value.toLowerCase()) {
+			input.value = "";
+			scoreGot.innerHTML = (parseInt(scoreGot.innerHTML) + 1).toString();
+			if (sentences.length > 0) {
+				genWords();
+			} else {
+				var span = document.createElement("span");
+				span.className = "good";
+				span.textContent = "Congratz";
+				finishMessage.appendChild(span);
+			}
+		} else {
+			endGame("Loser! The Game Will Start Again After 5 Seconds");
+		}
+	}
 
-    gameInterval = setInterval(function () {
-        timeLeftSpan.innerHTML = (parseInt(timeLeftSpan.innerHTML) - 1).toString();
-        if (timeLeftSpan.innerHTML === "0") {
-            checkWordMatch();
-        }
-    }, 1000);
+	function endGame(message) {
+		clearInterval(gameInterval);
+		var span = document.querySelector(".bad");
+		span.textContent = message;
+		diffculity.forEach(function (one) {
+			one.disabled = false;
+		});
+		input.disabled = true;
+		setTimeout(function () {
+			input.disabled = false;
+			input.focus();
+			diffculity.forEach(function (one) {
+				one.disabled = true;
+			});
+			input.value = "";
+			startPlay();
+			span.textContent = "";
+		}, 5000);
+	}
 
-    const inputField = document.querySelector("textarea");
-    inputField.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            checkWordMatch();
-            clearInterval(gameInterval);
-        }
-    });
+	gameInterval = setInterval(function () {
+		timeLeftSpan.innerHTML = (parseInt(timeLeftSpan.innerHTML) - 1).toString();
+		if (timeLeftSpan.innerHTML === "0") {
+			endGame("Time's up! The Game Will Start Again After 5 Seconds");
+		}
+	}, 1000);
+
+	const inputField = document.querySelector("textarea");
+	inputField.addEventListener("keydown", function (e) {
+		if (e.key === "Enter") {
+			e.preventDefault();
+			clearInterval(gameInterval);
+			checkWordMatch();
+		}
+	});
 }
 // const container = <HTMLDivElement>document.querySelector(".container");
 // getRepos();
