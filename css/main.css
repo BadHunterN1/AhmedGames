@@ -17,6 +17,7 @@ body {
   display: -ms-grid;
   display: grid;
   justify-items: center;
+  padding-bottom: 100px;
 }
 .container > h1, .container > h2 {
   text-align: center;
